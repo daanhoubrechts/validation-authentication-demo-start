@@ -2,9 +2,9 @@
 import express from "express";
 import bodyParser from "body-parser";
 import expressEjsLayouts from "express-ejs-layouts";
+import ContactValidation from "./middleware/ContactValidation.js";
 
 import { VIEWS_PATH, PORT } from "./consts.js";
-
 
 // import actions from controllers
 import { contact, home, postContact } from "./controllers/PageController.js";
@@ -44,7 +44,7 @@ app.post("/logout", logout);
 
 app.get("/", home);
 app.get("/contact", contact);
-app.post("/contact", postContact, contact);
+app.post("/contact", ContactValidation, postContact, contact);
 
 /**
  * API Routing
